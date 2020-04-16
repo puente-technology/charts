@@ -144,7 +144,8 @@ spec:
               value: "INTERNAL"
             - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
               {{- if and .Values.auth.enabled .Values.auth.ssl }}
-              value: "INTERNAL:SASL_SSL,EXTERNAL:SASL_SSL"
+              value: "INTERNAL_SSL:SASL_SSL,INTERNAL:PLAINTEXT,EXTERNAL:SSL"
+              # value: "INTERNAL:PLAINTEXT,EXTERNAL:SSL"
               {{- else if and .Values.auth.ssl (not .Values.auth.enabled) }}
               value: "INTERNAL:SSL,EXTERNAL:SSL"
               {{- else if and .Values.auth.enabled (not .Values.auth.ssl) }}
